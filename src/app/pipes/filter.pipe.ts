@@ -6,7 +6,7 @@ import { IClient } from '../interfaces/client';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(clients: IClient[], searchText: string): any {
+  transform(clients: IClient[], searchText: string): IClient[] | number[] {
       if (!clients) {
           return [];
       }

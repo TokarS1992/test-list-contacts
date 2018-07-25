@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatCardModule } from '@angular/material';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { ClientDetailComponent } from './client-detail.component';
 
 describe('ClientDetailComponent', () => {
@@ -8,7 +9,10 @@ describe('ClientDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClientDetailComponent ]
+      imports: [MatCardModule, MatGridListModule],
+      declarations: [
+          ClientDetailComponent
+      ]
     })
     .compileComponents();
   }));
