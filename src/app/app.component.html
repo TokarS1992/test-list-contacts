@@ -1,20 +1,59 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="sidenav-container">
+  <mat-sidenav-container class="sidenav">
+    <mat-sidenav class="left-bar" [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" [opened]="true">
+      <mat-nav-list>
+        <mat-card *ngFor="let client of clients" class="pointer" (click)="selectedClient(client)">
+          <mat-card-header>
+            <div mat-card-avatar class="client-small-avatar" [style.backgroundImage]="'url(' + client.general.avatar + ')'"></div>
+            <mat-card-title> {{ client.general.firstName }} {{ client.general.lastName }}</mat-card-title>
+            <mat-card-subtitle> {{ client.job.title }} </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="view-detail">
+      <mat-card *ngIf="!selecredClient">Select client for view detail information</mat-card>
+      <div *ngIf="selecredClient">
+        <mat-grid-list cols="4">
+          <mat-grid-tile colspan="1">
+            <div mat-card-avatar class="client-big-avatar" [style.backgroundImage]="'url(' + selecredClient.general.avatar + ')'"></div>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="3">
+            <div class="general-info-client">
+              <h2> {{ selecredClient.general.firstName }} {{ selecredClient.general.lastName }}</h2>
+              <h3> {{ selecredClient.job.title }} </h3>
+              <span> {{ selecredClient.job.company }} </span>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+        <mat-grid-list cols="4">
+          <mat-grid-tile colspan="1"></mat-grid-tile>
+
+          <mat-grid-tile colspan="3">
+            <div class="additional-info-client">
+              <div class="address info">
+                <span>Address: </span>
+                {{selecredClient.address.country}}, {{selecredClient.address.city}}, {{selecredClient.address.street}}, {{selecredClient.address.zipCode}}
+              </div>
+
+              <div class="email info">
+                <span>Email: </span>
+                {{selecredClient.contact.email}}
+              </div>
+
+              <div class="phone info">
+                <span>Email: </span>
+                {{selecredClient.contact.phone}}
+              </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
