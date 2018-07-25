@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Client } from '../../interfaces/client';
+import { IClient } from '../../interfaces/client';
 
 @Component({
   selector: 'app-client-detail',
@@ -7,7 +7,7 @@ import { Client } from '../../interfaces/client';
   styleUrls: ['./client-detail.component.css']
 })
 export class ClientDetailComponent implements OnInit {
-  @Input() selectClient: Client = null;
+  @Input() selectClient: IClient = null;
 
   constructor() { }
 

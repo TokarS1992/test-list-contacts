@@ -1,6 +1,6 @@
 <mat-card *ngIf="!selectClient">Select client for view detail information</mat-card>
 <div *ngIf="selectClient">
-  <mat-grid-list cols="4">
+  <mat-grid-list cols="4" rowHeight="2:1">
     <mat-grid-tile colspan="1">
       <div mat-card-avatar class="client-big-avatar" [style.backgroundImage]="'url(' + selectClient.general.avatar + ')'"></div>
     </mat-grid-tile>

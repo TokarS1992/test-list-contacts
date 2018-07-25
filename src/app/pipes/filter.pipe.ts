@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { IClient } from '../interfaces/client';
 
 @Pipe({
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(clients: any[], searchText: string): any {
+  transform(clients: IClient[], searchText: string): any {
       if (!clients) {
           return [];
       }
@@ -16,17 +17,23 @@ export class FilterPipe implements PipeTransform {
 
       const filterResults = clients.filter( client => {
           for (const key in client) {
-              for (const field in client[key]) {
-                  let _field = client[key][field];
-                  _field = _field.toLowerCase();
+              if (client.hasOwnProperty(key)) {
+                  for (const field in client[key]) {
+                      if (client[key].hasOwnProperty(field)) {
+                          try {
+                              let _field = client[key][field];
+                              _field = _field.toLowerCase();
 
-                  if (field === 'avatar') {
-                      continue;
-                  }
-                  if (_field.includes(searchText)) {
-                      return _field;
-                  } else {
-                      continue;
+                              if (field === 'avatar') {
+                                  continue;
+                              }
+                              if (_field.includes(searchText)) {
+                                  return _field;
+                              }
+                          } catch (e) {
+                              console.log(e);
+                          }
+                      }
                   }
               }
           }

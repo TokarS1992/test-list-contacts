@@ -1,6 +1,6 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import { Client } from './interfaces/client';
+import { IClient } from './interfaces/client';
 import { HttpService } from './services/http.service';
 
 @Component({
@@ -12,8 +12,8 @@ import { HttpService } from './services/http.service';
 export class AppComponent implements OnInit, OnDestroy {
   public searchText = null;
   public mobileQuery: MediaQueryList;
-  public clients: Client[] = [];
-  public selecredClient: Client = null;
+  public clients: IClient[] = [];
+  public selecredClient: IClient = null;
   private _mobileQueryListener: () => void;
 
   constructor(
@@ -27,13 +27,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   public ngOnInit(): void {
     this.httpService.getData('assets/clients.json').subscribe(data => {
+        data.map((client: IClient) => {
+            client.general.fullName = `${client.general.firstName} ${client.general.lastName}`;
+            return client;
+        });
         this.clients = data;
     });
   }
   public ngOnDestroy(): void {
       this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-  selectedClient(data: Client): void {
+  selectedClient(data: IClient): void {
       this.selecredClient = data;
   }
 }

@@ -1,8 +1,9 @@
-export interface Client {
+export interface IClient {
     general: {
         firstName: string,
         lastName: string,
-        avatar: string
+        avatar: string,
+        fullName: string
     };
     job: {
         company: string,

@@ -19,6 +19,10 @@
     border-right: 1px solid #c7bbbb;
 }
 
+.view-detail {
+    overflow: hidden;
+}
+
 .clients-list {
     display: block;
     overflow-y: auto;
