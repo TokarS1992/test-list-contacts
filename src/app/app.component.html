@@ -8,15 +8,17 @@
 
       <mat-nav-list class="clients-list">
         <mat-card *ngFor="let client of clients | filter: searchText" class="pointer" (click)="selectedClient(client)">
-          <mat-card-header>
+          <mat-card-header *ngIf="client !== -1">
             <div mat-card-avatar class="client-small-avatar" [style.backgroundImage]="'url(' + client.general.avatar + ')'"></div>
             <mat-card-title> {{ client.general.firstName }} {{ client.general.lastName }}</mat-card-title>
             <mat-card-subtitle> {{ client.job.title }} </mat-card-subtitle>
           </mat-card-header>
+
+          <mat-card-header *ngIf="client === -1">
+            <div>None results</div>
+          </mat-card-header>
         </mat-card>
       </mat-nav-list>
-
-      <div>{{filter}}</div>
     </mat-sidenav>
 
     <mat-sidenav-content class="view-detail">

@@ -16,14 +16,15 @@
     width: 350px;
     padding: 10px;
     overflow: hidden;
+    border-right: 1px solid #c7bbbb;
 }
 
 .clients-list {
     display: block;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: calc(100vh + 60px);
 }
 
 .search-clients {
-    width: 90%;
+    width: 100%;
 }

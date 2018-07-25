@@ -14,22 +14,28 @@ export class FilterPipe implements PipeTransform {
       }
       searchText = searchText.trim().toLocaleLowerCase();
 
-      return clients.filter( client => {
+      const filterResults = clients.filter( client => {
           for (const key in client) {
-            for (const field in client[key]) {
-              let _field = client[key][field];
-              _field = _field.toLowerCase();
+              for (const field in client[key]) {
+                  let _field = client[key][field];
+                  _field = _field.toLowerCase();
 
-              if (field === 'avatar') {
-                continue;
+                  if (field === 'avatar') {
+                      continue;
+                  }
+                  if (_field.includes(searchText)) {
+                      return _field;
+                  } else {
+                      continue;
+                  }
               }
-              if (_field.includes(searchText)) {
-                return _field;
-              } else {
-                continue;
-              }
-            }
           }
       });
+
+      if (filterResults.length === 0) {
+        return [-1];
+      }
+
+      return filterResults;
   }
 }
