@@ -1,0 +1,18 @@
+.client-big-avatar {
+    width: 128px;
+    height: 128px;
+}
+
+.general-info-client {
+    width: 100%;
+    flex-direction: column;
+}
+
+.additional-info-client {
+    width: 100%;
+    height: 100%;
+}
+
+.info {
+    margin-bottom: 10px;
+}

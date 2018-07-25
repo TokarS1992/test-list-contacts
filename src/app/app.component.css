@@ -14,23 +14,16 @@
 
 .left-bar {
     width: 350px;
+    padding: 10px;
+    overflow: hidden;
 }
 
-.client-big-avatar {
-    width: 128px;
-    height: 128px;
+.clients-list {
+    display: block;
+    overflow-y: scroll;
+    max-height: calc(100vh + 60px);
 }
 
-.general-info-client {
-    width: 100%;
-    flex-direction: column;
-}
-
-.additional-info-client {
-    width: 100%;
-    height: 100%;
-}
-
-.info {
-    margin-bottom: 10px;
+.search-clients {
+    width: 90%;
 }

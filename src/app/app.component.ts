@@ -10,6 +10,7 @@ import { HttpService } from './services/http.service';
   providers: [HttpService]
 })
 export class AppComponent implements OnInit, OnDestroy {
+  public searchText = null;
   public mobileQuery: MediaQueryList;
   public clients: Client[] = [];
   public selecredClient: Client = null;

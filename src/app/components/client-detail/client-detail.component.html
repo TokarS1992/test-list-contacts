@@ -1,3 +1,39 @@
-<p>
-  client-detail works!
-</p>
+<mat-card *ngIf="!selectClient">Select client for view detail information</mat-card>
+<div *ngIf="selectClient">
+  <mat-grid-list cols="4">
+    <mat-grid-tile colspan="1">
+      <div mat-card-avatar class="client-big-avatar" [style.backgroundImage]="'url(' + selectClient.general.avatar + ')'"></div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3">
+      <div class="general-info-client">
+        <h2> {{ selectClient.general.firstName }} {{ selectClient.general.lastName }}</h2>
+        <h3> {{ selectClient.job.title }} </h3>
+        <span> {{ selectClient.job.company }} </span>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="4">
+    <mat-grid-tile colspan="1"></mat-grid-tile>
+
+    <mat-grid-tile colspan="3">
+      <div class="additional-info-client">
+        <div class="address info">
+          <span>Address: </span>
+          {{selectClient.address.country}}, {{selectClient.address.city}}, {{selectClient.address.street}}, {{selectClient.address.zipCode}}
+        </div>
+
+        <div class="email info">
+          <span>Email: </span>
+          {{selectClient.contact.email}}
+        </div>
+
+        <div class="phone info">
+          <span>Email: </span>
+          {{selectClient.contact.phone}}
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

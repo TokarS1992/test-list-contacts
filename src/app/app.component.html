@@ -2,8 +2,12 @@
 <div class="sidenav-container">
   <mat-sidenav-container class="sidenav">
     <mat-sidenav class="left-bar" [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" [opened]="true">
-      <mat-nav-list>
-        <mat-card *ngFor="let client of clients" class="pointer" (click)="selectedClient(client)">
+      <mat-form-field class="search-clients">
+        <input matInput placeholder="Enter info" [(ngModel)]="searchText">
+      </mat-form-field>
+
+      <mat-nav-list class="clients-list">
+        <mat-card *ngFor="let client of clients | filter: searchText" class="pointer" (click)="selectedClient(client)">
           <mat-card-header>
             <div mat-card-avatar class="client-small-avatar" [style.backgroundImage]="'url(' + client.general.avatar + ')'"></div>
             <mat-card-title> {{ client.general.firstName }} {{ client.general.lastName }}</mat-card-title>
@@ -11,48 +15,12 @@
           </mat-card-header>
         </mat-card>
       </mat-nav-list>
+
+      <div>{{filter}}</div>
     </mat-sidenav>
 
     <mat-sidenav-content class="view-detail">
-      <mat-card *ngIf="!selecredClient">Select client for view detail information</mat-card>
-      <div *ngIf="selecredClient">
-        <mat-grid-list cols="4">
-          <mat-grid-tile colspan="1">
-            <div mat-card-avatar class="client-big-avatar" [style.backgroundImage]="'url(' + selecredClient.general.avatar + ')'"></div>
-          </mat-grid-tile>
-
-          <mat-grid-tile colspan="3">
-            <div class="general-info-client">
-              <h2> {{ selecredClient.general.firstName }} {{ selecredClient.general.lastName }}</h2>
-              <h3> {{ selecredClient.job.title }} </h3>
-              <span> {{ selecredClient.job.company }} </span>
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-
-        <mat-grid-list cols="4">
-          <mat-grid-tile colspan="1"></mat-grid-tile>
-
-          <mat-grid-tile colspan="3">
-            <div class="additional-info-client">
-              <div class="address info">
-                <span>Address: </span>
-                {{selecredClient.address.country}}, {{selecredClient.address.city}}, {{selecredClient.address.street}}, {{selecredClient.address.zipCode}}
-              </div>
-
-              <div class="email info">
-                <span>Email: </span>
-                {{selecredClient.contact.email}}
-              </div>
-
-              <div class="phone info">
-                <span>Email: </span>
-                {{selecredClient.contact.phone}}
-              </div>
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </div>
+      <app-client-detail [selectClient]="selecredClient"></app-client-detail>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
